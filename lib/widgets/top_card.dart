@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_expenses_2/constants.dart';
 import 'package:personal_expenses_2/components/one_curveClipper.dart';
 import 'package:personal_expenses_2/components/two_curvesClipper.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 import 'ballance_info.dart';
 
@@ -10,8 +10,8 @@ import 'ballance_info.dart';
 class TopHalf extends StatelessWidget {
   final double income;
   final double expenses;
-  double total;
-  TopHalf({this.income, this.expenses}) {
+  double total = 0.0;
+  TopHalf({required this.income, required this.expenses}) {
     total = income - expenses;
   }
 
@@ -55,7 +55,8 @@ class TopHalf extends StatelessWidget {
                   "Total Ballance",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: ResponsiveFlutter.of(context).fontSize(2.3),
+                    // fontSize: ResponsiveFlutter.of(context).fontSize(2.3),
+                    fontSize: 23,
                   ),
                 ),
                 RichText(
@@ -66,14 +67,16 @@ class TopHalf extends StatelessWidget {
                         text: 'USD  ',
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                          // fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                          fontSize: 20,
                         ),
                       ),
                       TextSpan(
                           text: total.toStringAsFixed(2),
                           style: TextStyle(
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(5.175),
+                              fontSize: 51.75,
+                              // ResponsiveFlutter.of(context).fontSize(5.175),
+
                               fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -88,7 +91,7 @@ class TopHalf extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ColumnInfo(
-                        iconColor: Colors.greenAccent[400],
+                        iconColor: Colors.greenAccent[400]!,
                         iconData: Icons.arrow_downward,
                         text: "Income",
                         value: income.toStringAsFixed(2),
@@ -99,7 +102,7 @@ class TopHalf extends StatelessWidget {
                         color: Colors.deepPurpleAccent,
                       ),
                       ColumnInfo(
-                        iconColor: Colors.redAccent[400],
+                        iconColor: Colors.redAccent[400]!,
                         iconData: Icons.arrow_upward,
                         text: "Expenses",
                         value: expenses.toStringAsFixed(2),

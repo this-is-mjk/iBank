@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 class ColumnInfo extends StatelessWidget {
   final IconData iconData;
@@ -7,11 +7,11 @@ class ColumnInfo extends StatelessWidget {
   final Color iconColor;
 
   const ColumnInfo({
-    this.iconColor,
-    this.iconData,
-    this.text,
-    this.value,
-    Key key,
+    required this.iconColor,
+    required this.iconData,
+    required this.text,
+    required this.value,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,8 @@ class ColumnInfo extends StatelessWidget {
               padding: const EdgeInsets.only(right: 2),
               child: Icon(
                 iconData,
-                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                // size: ResponsiveFlutter.of(context).fontSize(2.2),
+                size: 2.2,
                 color: iconColor,
               ),
             ),
@@ -34,7 +35,8 @@ class ColumnInfo extends StatelessWidget {
               text,
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: ResponsiveFlutter.of(context).fontSize(1.84),
+                // fontSize: ResponsiveFlutter.of(context).fontSize(1.84),
+                fontSize: 18.4,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -45,9 +47,11 @@ class ColumnInfo extends StatelessWidget {
           child: Text(
             value,
             style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2.53)),
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+              // fontSize: ResponsiveFlutter.of(context).fontSize(2.53)
+              fontSize: 25.3,
+            ),
           ),
         )
       ],

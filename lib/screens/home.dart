@@ -3,7 +3,7 @@ import 'package:personal_expenses_2/screens/add_income.dart';
 import 'package:personal_expenses_2/models/Transactions.dart';
 import 'package:personal_expenses_2/Widgets/LastT_SeeAll.dart';
 import 'package:personal_expenses_2/Widgets/top_card.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 import '../Widgets/transaction_card.dart';
 
@@ -15,11 +15,11 @@ class Home extends StatelessWidget {
   final Function updateIncome;
 
   const Home(
-      {Key key,
-      this.incomeValue,
-      this.expensesValue,
-      this.updateIncome,
-      this.transactions})
+      {Key? key,
+      this.incomeValue = 0.0,
+      this.expensesValue = 0.0,
+      required this.updateIncome,
+      required this.transactions})
       : super(key: key);
 
   AppBar buildAppBar(BuildContext context) {
@@ -28,7 +28,9 @@ class Home extends StatelessWidget {
       elevation: 0,
       title: Text(
         "Welcome Back, Yasser",
-        style: TextStyle(fontSize: ResponsiveFlutter.of(context).fontSize(2.4)),
+        style: TextStyle(
+            // fontSize: ResponsiveFlutter.of(context).fontSize(2.4)
+            fontSize: 24),
       ),
       actions: [
         Padding(
@@ -45,7 +47,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  void _showModal({BuildContext context}) {
+  void _showModal({required BuildContext context}) {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -112,9 +114,6 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: realHeight * 0.009,
           ),
         ],
       ),

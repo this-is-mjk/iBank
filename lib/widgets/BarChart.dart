@@ -6,7 +6,8 @@ import 'package:personal_expenses_2/constants.dart';
 class TheBarChart extends StatefulWidget {
   final List listOftransactions;
   final List listOfIncomes;
-  TheBarChart({this.listOftransactions, this.listOfIncomes});
+  TheBarChart({required this.listOftransactions, required this.listOfIncomes});
+
   @override
   State<StatefulWidget> createState() => TheBarChartState();
 }
@@ -17,13 +18,29 @@ class TheBarChartState extends State<TheBarChart> {
   final Color nullBarColor = Colors.grey.withOpacity(0.2);
   final double width = 7;
   List myList = [];
-  List<BarChartGroupData> rawBarGroups;
-  List<BarChartGroupData> showingBarGroups;
+  late List<BarChartGroupData> rawBarGroups;
+  late List<BarChartGroupData> showingBarGroups;
 
-  int touchedGroupIndex;
-  List itemList;
+  @override
+  void initState() {
+    super.initState();
+    makeList();
 
-  makeList() {
+    int i = -1;
+    final items = myList.reversed.map((e) {
+      i++;
+      return makeGroupData(
+        i,
+        (e['expense'] / 1000).toDouble(),
+        (e['income'] / 1000).toDouble(),
+      );
+    }).toList();
+
+    rawBarGroups = items;
+    showingBarGroups = rawBarGroups;
+  }
+
+  void makeList() {
     if (widget.listOftransactions.isNotEmpty) {
       for (int i = 0; i < 7; i++) {
         var dayVar = DateTime.now().subtract(Duration(days: i));
@@ -43,16 +60,14 @@ class TheBarChartState extends State<TheBarChart> {
             incomes += widget.listOfIncomes[j].amount;
           }
         }
-        widget.listOftransactions.removeWhere((element) {
-          return (element.date.day == dayVar.day &&
-              element.date.month == dayVar.month &&
-              element.date.year == dayVar.year);
-        });
-        widget.listOfIncomes.removeWhere((element) {
-          return (element.date.day == dayVar.day &&
-              element.date.month == dayVar.month &&
-              element.date.year == dayVar.year);
-        });
+        widget.listOftransactions.removeWhere((element) =>
+            element.date.day == dayVar.day &&
+            element.date.month == dayVar.month &&
+            element.date.year == dayVar.year);
+        widget.listOfIncomes.removeWhere((element) =>
+            element.date.day == dayVar.day &&
+            element.date.month == dayVar.month &&
+            element.date.year == dayVar.year);
         myList.add({
           'expense': expenses,
           'income': incomes,
@@ -60,26 +75,6 @@ class TheBarChartState extends State<TheBarChart> {
         });
       }
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    makeList();
-
-    int i = -1;
-    final items = myList.reversed.map((e) {
-      i++;
-
-      return makeGroupData(
-          i,
-          num.parse((e['expense'] / 1000).toStringAsFixed(2)),
-          num.parse((e['income'] / 1000).toStringAsFixed(2)));
-    }).toList();
-
-    rawBarGroups = items;
-
-    showingBarGroups = rawBarGroups;
   }
 
   @override
@@ -91,15 +86,12 @@ class TheBarChartState extends State<TheBarChart> {
         children: [
           Text(
             "${DateFormat(DateFormat.MONTH).format(DateTime.now())} - ${DateTime.now().year}",
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
-          SizedBox(
-            height: 15,
-          ),
+          SizedBox(height: 15),
           Text(
-            //11 -- 17
             "${DateTime.now().subtract(Duration(days: 6)).day} ${DateFormat(DateFormat.ABBR_MONTH).format(DateTime.now().subtract(Duration(days: 6)))} ----> ${DateTime.now().day} ${DateFormat(DateFormat.ABBR_MONTH).format(DateTime.now())} \n",
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           AspectRatio(
             aspectRatio: 1,
@@ -119,16 +111,12 @@ class TheBarChartState extends State<TheBarChart> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         makeTransactionsIcon(),
-                        const SizedBox(
-                          width: 38,
-                        ),
+                        const SizedBox(width: 38),
                         const Text(
                           'Transactions',
                           style: TextStyle(color: Colors.indigo, fontSize: 22),
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ),
+                        const SizedBox(width: 4),
                         const Text(
                           'state',
                           style: TextStyle(color: Colors.amber, fontSize: 16),
@@ -142,72 +130,63 @@ class TheBarChartState extends State<TheBarChart> {
                           BarChartData(
                             maxY: 20,
                             titlesData: FlTitlesData(
-                              show: true,
-                              bottomTitles: SideTitles(
-                                showTitles: true,
-                                getTextStyles: (value) => const TextStyle(
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),
-                                margin: 20,
-                                getTitles: (double value) {
-                                  switch (value.toInt()) {
-                                    case 6:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[0]['day'])
-                                          .substring(0, 2);
-                                    case 5:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[1]['day'])
-                                          .substring(0, 2);
-                                    case 4:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[2]['day'])
-                                          .substring(0, 2);
-                                    case 3:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[3]['day'])
-                                          .substring(0, 2);
-                                    case 2:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[4]['day'])
-                                          .substring(0, 2);
-                                    case 1:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[5]['day'])
-                                          .substring(0, 2);
-                                    case 0:
-                                      return DateFormat(DateFormat.ABBR_WEEKDAY)
-                                          .format(myList[6]['day'])
-                                          .substring(0, 2);
-                                    default:
-                                      return '';
-                                  }
-                                },
+                              bottomTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                  showTitles: true,
+                                  reservedSize: 40,
+                                  getTitlesWidget: (value, meta) {
+                                    final index = value.toInt();
+                                    final day = myList[6 - index]['day'];
+                                    return SideTitleWidget(
+                                      axisSide: meta.axisSide,
+                                      child: Text(
+                                        DateFormat(DateFormat.ABBR_WEEKDAY)
+                                            .format(day)
+                                            .substring(0, 2),
+                                        style: const TextStyle(
+                                          color: Colors.indigo,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  // margin: 20,
+                                ),
                               ),
-                              leftTitles: SideTitles(
-                                showTitles: true,
-                                getTextStyles: (value) => const TextStyle(
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),
-                                margin: 32,
-                                reservedSize: 14,
-                                getTitles: (value) {
-                                  if (value == 1) {
-                                    return '1K';
-                                  } else if (value == 5) {
-                                    return '5K';
-                                  } else if (value == 10) {
-                                    return '10K';
-                                  } else if (value == 15) {
-                                    return '15K';
-                                  } else if (value == 20) {
-                                    return '20K';
-                                  } else {
-                                    return '';
-                                  }
-                                },
+                              leftTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                  showTitles: true,
+                                  reservedSize: 40,
+                                  getTitlesWidget: (value, meta) {
+                                    String text;
+                                    if (value == 1) {
+                                      text = '1K';
+                                    } else if (value == 5) {
+                                      text = '5K';
+                                    } else if (value == 10) {
+                                      text = '10K';
+                                    } else if (value == 15) {
+                                      text = '15K';
+                                    } else if (value == 20) {
+                                      text = '20K';
+                                    } else {
+                                      text = '';
+                                    }
+                                    return SideTitleWidget(
+                                      axisSide: meta.axisSide,
+                                      child: Text(
+                                        text,
+                                        style: const TextStyle(
+                                          color: Colors.indigo,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  // margin: 32,
+                                ),
                               ),
                             ),
                             borderData: FlBorderData(
@@ -218,9 +197,7 @@ class TheBarChartState extends State<TheBarChart> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -254,9 +231,7 @@ class TheBarChartState extends State<TheBarChart> {
             backgroundColor: color,
             radius: 5,
           ),
-          const SizedBox(
-            width: 7,
-          ),
+          const SizedBox(width: 7),
           Text(
             text,
             style: TextStyle(
@@ -268,18 +243,22 @@ class TheBarChartState extends State<TheBarChart> {
   }
 
   BarChartGroupData makeGroupData(int x, double y1, double y2) {
-    return BarChartGroupData(barsSpace: 4, x: x, barRods: [
-      BarChartRodData(
-        y: y1 == 0 ? 20 : y1,
-        colors: y1 != 0 ? [leftBarColor] : [nullBarColor],
-        width: width,
-      ),
-      BarChartRodData(
-        y: y2 == 0 ? 20 : y2,
-        colors: y2 != 0 ? [rightBarColor] : [nullBarColor],
-        width: width,
-      ),
-    ]);
+    return BarChartGroupData(
+      barsSpace: 4,
+      x: x,
+      barRods: [
+        BarChartRodData(
+          toY: y1 == 0 ? 20 : y1,
+          color: y1 != 0 ? leftBarColor : nullBarColor,
+          width: width,
+        ),
+        BarChartRodData(
+          toY: y2 == 0 ? 20 : y2,
+          color: y2 != 0 ? rightBarColor : nullBarColor,
+          width: width,
+        ),
+      ],
+    );
   }
 
   Widget makeTransactionsIcon() {
@@ -294,33 +273,25 @@ class TheBarChartState extends State<TheBarChart> {
           height: 10,
           color: Colors.blue.withOpacity(0.7),
         ),
-        const SizedBox(
-          width: space,
-        ),
+        const SizedBox(width: space),
         Container(
           width: width,
           height: 28,
           color: Colors.amber.withOpacity(0.6),
         ),
-        const SizedBox(
-          width: space,
-        ),
+        const SizedBox(width: space),
         Container(
           width: width,
           height: 42,
           color: Colors.blue,
         ),
-        const SizedBox(
-          width: space,
-        ),
+        const SizedBox(width: space),
         Container(
           width: width,
           height: 28,
           color: Colors.amber.withOpacity(0.6),
         ),
-        const SizedBox(
-          width: space,
-        ),
+        const SizedBox(width: space),
         Container(
           width: width,
           height: 10,

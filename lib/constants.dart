@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:uuid/uuid.dart';
 import 'models/Income.dart';
 import 'models/Transactions.dart';
+
+final uuid = Uuid();
+final uniqueId = uuid.v4();
 
 Color kPrimaryColor = Color(0xff5C01D0);
 Color kAccentColor = Color(0xff5C01D0);
@@ -11,6 +14,7 @@ Color kDateCardColor = Color(0xffAA2AE2);
 
 List<Transaction> kTransactions = [
   Transaction(
+      id: uniqueId,
       amount: 500.0,
       date: DateTime.now().subtract(Duration(days: 1)),
       title: 'New Bike',
@@ -19,6 +23,7 @@ List<Transaction> kTransactions = [
         'color': Colors.purple,
       }),
   Transaction(
+      id: uniqueId,
       amount: 59.99,
       date: DateTime.now().subtract(Duration(days: 2)),
       title: 'Call Of Duty',
@@ -27,6 +32,7 @@ List<Transaction> kTransactions = [
         'color': Colors.blue,
       }),
   Transaction(
+      id: uniqueId,
       amount: 22.57,
       date: DateTime.now().subtract(Duration(days: 6)),
       title: 'Skin Care Product',
@@ -35,6 +41,7 @@ List<Transaction> kTransactions = [
         'color': Colors.red,
       }),
   Transaction(
+      id: uniqueId,
       amount: 7570,
       date: DateTime.now().subtract(Duration(days: 2)),
       title: 'Leather Gold & Silver Monopoly Set',
@@ -43,6 +50,7 @@ List<Transaction> kTransactions = [
         'color': Colors.blue,
       }),
   Transaction(
+      id: uniqueId,
       amount: 18993,
       date: DateTime.now().subtract(Duration(days: 1)),
       title: 'Crystal Ergoripado Vaccum',
@@ -51,6 +59,7 @@ List<Transaction> kTransactions = [
         'color': Colors.green,
       }),
   Transaction(
+      id: uniqueId,
       amount: 10000,
       date: DateTime.now().subtract(Duration(days: 6)),
       title: 'Social & Lifestyle',
@@ -59,6 +68,7 @@ List<Transaction> kTransactions = [
         'color': Colors.blue,
       }),
   Transaction(
+      id: uniqueId,
       amount: 1500,
       date: DateTime.now().subtract(Duration(days: 3)),
       title: 'Tiffany Tennis Ball Can',
@@ -67,6 +77,7 @@ List<Transaction> kTransactions = [
         'color': Colors.green,
       }),
   Transaction(
+      id: uniqueId,
       amount: 8250,
       date: DateTime.now().subtract(Duration(days: 5)),
       title: 'Louis Vuitton Skateboard',
@@ -124,7 +135,9 @@ InputDecoration kTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.fromLTRB(30, 19, 20, 19),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: Colors.grey[400].withOpacity(0.8),
+      //TODO: The method 'withOpacity' can't be unconditionally invoked because the receiver can be 'null'.
+      // Try making the call conditional (using '?.') or adding a null check to the target ('!').
+      color: Colors.grey[400]!.withOpacity(0.8),
     ),
     borderRadius: BorderRadius.circular(18),
   ),
@@ -136,7 +149,9 @@ InputDecoration kTextFieldDecoration = InputDecoration(
     ),
   ),
   hintText: '\$50',
-  fillColor: Colors.grey[200].withOpacity(0.4),
+  // TODO: The method 'withOpacity' can't be unconditionally invoked because the receiver can be 'null'.
+  // Try making the call conditional (using '?.') or adding a null check to the target ('!').
+  fillColor: Colors.grey[200]!.withOpacity(0.4),
   filled: true,
 );
 

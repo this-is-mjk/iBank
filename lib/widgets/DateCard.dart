@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_expenses_2/constants.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 class DateCard extends StatefulWidget {
   final DateTime date;
   final Function function;
   final int index;
-  DateCard({this.date, this.function, this.index});
+  DateCard({required this.date, required this.function, required this.index});
 
   @override
   _DateCardState createState() => _DateCardState();
@@ -65,7 +65,8 @@ class _DateCardState extends State<DateCard> {
                     ? Colors.white
                     : Colors.black,
                 fontWeight: FontWeight.bold,
-                fontSize: ResponsiveFlutter.of(context).fontSize(3),
+                // fontSize: ResponsiveFlutter.of(context).fontSize(3),
+                fontSize: 30,
               ),
             ),
             Text(
@@ -75,7 +76,8 @@ class _DateCardState extends State<DateCard> {
                     ? Colors.white
                     : Colors.black,
                 fontWeight: FontWeight.w400,
-                fontSize: ResponsiveFlutter.of(context).fontSize(1.5),
+                // fontSize: ResponsiveFlutter.of(context).fontSize(1.5),
+                fontSize: 15,
               ),
             ),
             SizedBox(

@@ -4,7 +4,7 @@ import 'package:personal_expenses_2/components/BNB_clipper.dart';
 class BottomNavBarFinal extends StatelessWidget {
   final TabController tabController;
 
-  const BottomNavBarFinal({this.tabController});
+  const BottomNavBarFinal({required this.tabController});
 
   @override
   Widget build(BuildContext context) {

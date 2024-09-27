@@ -5,7 +5,8 @@ import 'package:personal_expenses_2/widgets/transaction_card.dart';
 class AllTransactions extends StatelessWidget {
   final List<Transaction> listOfTransactions;
 
-  AllTransactions({Key key, this.listOfTransactions}) : super(key: key);
+  AllTransactions({Key? key, required this.listOfTransactions})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class AllTransactions extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: listOfTransactions.map((e) {
             return Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),

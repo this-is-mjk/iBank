@@ -1,12 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CircleChart extends StatelessWidget {
   List myList = [];
   final List listOfTransactions;
 
   CircleChart({
-    @required this.listOfTransactions,
+    required this.listOfTransactions,
   }) {
     makeList();
   }
@@ -81,10 +82,10 @@ class Indicator extends StatelessWidget {
   final String text;
   final double percentage;
   const Indicator({
-    Key key,
-    this.color,
-    this.text,
-    this.percentage,
+    Key? key,
+    required this.color,
+    required this.text,
+    required this.percentage,
   });
 
   @override

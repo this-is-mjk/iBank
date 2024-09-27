@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 class Categories extends StatelessWidget {
   final double realWidth;
@@ -10,13 +10,13 @@ class Categories extends StatelessWidget {
   final Function function;
   final bool lastIndex;
   const Categories({
-    Key key,
-    this.realWidth,
-    this.realHeight,
-    this.color,
-    this.text,
-    this.function,
-    this.lastIndex,
+    Key? key,
+    required this.realWidth,
+    required this.realHeight,
+    required this.color,
+    required this.text,
+    required this.function,
+    required this.lastIndex,
     this.character,
   }) : super(key: key);
   @override
@@ -41,10 +41,10 @@ class Categories extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-                  ),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      // fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                      fontSize: 18),
                 ),
               ],
             ),

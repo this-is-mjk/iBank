@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 class TransactionCard extends StatelessWidget {
   final String id;
@@ -8,7 +8,12 @@ class TransactionCard extends StatelessWidget {
   final double amount;
   final DateTime date;
   final Map category;
-  TransactionCard({this.id, this.title, this.amount, this.date, this.category});
+  TransactionCard(
+      {required this.id,
+      required this.title,
+      required this.amount,
+      required this.date,
+      required this.category});
 
   String getImage() {
     switch (category['name']) {
@@ -34,7 +39,7 @@ class TransactionCard extends StatelessWidget {
       width: size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(23),
-        border: Border.all(color: Colors.grey[400].withOpacity(0.6)),
+        border: Border.all(color: Colors.grey[400]!.withOpacity(0.6)),
       ),
       child: Row(
         children: [
@@ -89,7 +94,8 @@ class TransactionCard extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.grey[400],
                             fontSize:
-                                ResponsiveFlutter.of(context).fontSize(1.495),
+                                // ResponsiveFlutter.of(context).fontSize(1.495),
+                                1.495,
                           ),
                         ),
                       ),
@@ -100,11 +106,11 @@ class TransactionCard extends StatelessWidget {
                         softWrap: false,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                          color: Colors.redAccent[400],
-                          fontWeight: FontWeight.w900,
-                          fontSize:
-                              ResponsiveFlutter.of(context).fontSize(2.07),
-                        ),
+                            color: Colors.redAccent[400],
+                            fontWeight: FontWeight.w900,
+                            fontSize:
+                                // ResponsiveFlutter.of(context).fontSize(2.07),
+                                2.07),
                       ),
                     ),
                     SizedBox(
@@ -116,11 +122,11 @@ class TransactionCard extends StatelessWidget {
                         overflow: TextOverflow.fade,
                         softWrap: false,
                         style: TextStyle(
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.w500,
-                          fontSize:
-                              ResponsiveFlutter.of(context).fontSize(1.84),
-                        ),
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w500,
+                            fontSize:
+                                // ResponsiveFlutter.of(context).fontSize(1.84),
+                                1.84),
                       ),
                     )
                   ],

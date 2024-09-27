@@ -7,7 +7,7 @@ import 'package:personal_expenses_2/widgets/BarChart.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> transactions;
   final List<Income> incomes;
-  Chart({this.transactions, this.incomes});
+  Chart({required this.transactions, required this.incomes});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class Chart extends StatelessWidget {
             children: [
               CircleChart(listOfTransactions: List.from(transactions)),
               SizedBox(
-                height: 30,
+                height: 40,
               ),
               TheBarChart(
                 listOftransactions: List.from(transactions),

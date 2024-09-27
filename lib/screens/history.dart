@@ -3,20 +3,20 @@ import 'package:personal_expenses_2/constants.dart';
 import 'package:personal_expenses_2/models/Transactions.dart';
 import 'package:personal_expenses_2/Widgets/transaction_card.dart';
 import 'package:personal_expenses_2/widgets/LastT_SeeAll.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 import '../Widgets/DateCard.dart';
 
 class History extends StatefulWidget {
   final List<Transaction> transactions;
-  History({this.transactions});
+  History({required this.transactions});
 
   @override
   _HistoryState createState() => _HistoryState();
 }
 
 class _HistoryState extends State<History> {
-  int _index;
+  late int _index;
   List<Transaction> _listOfTransactions = [];
   @override
   void initState() {
@@ -70,7 +70,8 @@ class _HistoryState extends State<History> {
               'Date',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2.1),
+                // fontSize: ResponsiveFlutter.of(context).fontSize(2.1),
+                fontSize: 21,
               ),
             ),
           ),

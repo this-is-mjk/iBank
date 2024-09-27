@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses_2/screens/add_transaction.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 class FAB extends StatelessWidget {
   final Function addTransaction;
@@ -10,12 +10,14 @@ class FAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: ResponsiveFlutter.of(context).scale(70),
-      width: ResponsiveFlutter.of(context).verticalScale(35),
+      // height: ResponsiveFlutter.of(context).scale(70),
+      height: 70,
+      // width: ResponsiveFlutter.of(context).verticalScale(35),
+      width: 35,
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: FloatingActionButton(
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           elevation: 3,
           onPressed: () {
             Navigator.push(
@@ -31,7 +33,8 @@ class FAB extends StatelessWidget {
           },
           child: Icon(
             Icons.add,
-            size: ResponsiveFlutter.of(context).fontSize(4),
+            // size: ResponsiveFlutter.of(context).fontSize(4),
+            size: 4,
           ),
         ),
       ),

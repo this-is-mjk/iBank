@@ -17,7 +17,7 @@ class HomeNavigator extends StatefulWidget {
 
 class _HomeNavigatorState extends State<HomeNavigator>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _HomeNavigatorState extends State<HomeNavigator>
   double _incomeValue = 0;
 
   void _addNewTransaction(
-      {String title, double amount, DateTime dateTime, Map category}) {
+      {required String title, required double amount, required DateTime dateTime, required Map category}) {
     final newTx = Transaction(
         title: title,
         amount: amount,
@@ -86,7 +86,7 @@ class _HomeNavigatorState extends State<HomeNavigator>
             expensesValue: _expensesValue,
             incomeValue: _incomeValue,
             transactions: _transactions,
-            updateIncome: _addNewIncome,
+            updateIncome: _addNewIncome, key: null,
           ),
           History(
             transactions: _transactions,

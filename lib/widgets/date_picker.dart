@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class DatePicker extends StatefulWidget {
   final Function updateDateValue;
 
-  const DatePicker({Key key, this.updateDateValue}) : super(key: key);
+  const DatePicker({Key? key, required this.updateDateValue}) : super(key: key);
   @override
   _DatePickerState createState() => _DatePickerState();
 }
@@ -48,15 +48,15 @@ class _DatePickerState extends State<DatePicker> {
                   ),
                 ),
                 TextSpan(
+                    // ignore: unnecessary_null_comparison
                     text: _selectedDate == null
                         ? DateFormat.yMd().format(DateTime.now())
                         : DateFormat.yMd().format(_selectedDate)),
               ]),
         ),
-        FlatButton(
+        FloatingActionButton(
           onPressed: _chooseDate,
           child: Text("Change Date"),
-          textColor: Colors.purpleAccent[700],
         ),
       ],
     );

@@ -34,14 +34,15 @@ class Profile extends StatelessWidget {
             Text(
               "Harzelli Yasser",
               style:
-                  Theme.of(context).textTheme.headline6.copyWith(fontSize: 25),
+              // FIXME: changed repo
+                  Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 25),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
               "Medea, Algeria ",
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             SizedBox(
               height: 20,
@@ -137,9 +138,9 @@ class ListTileProp extends StatelessWidget {
   final String text;
   final bool last;
   const ListTileProp({
-    Key key,
-    this.icon,
-    this.text,
+    Key? key,
+    required this.icon,
+    required this.text,
     this.last = false,
   }) : super(key: key);
 

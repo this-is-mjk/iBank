@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:personal_expenses_2/Widgets/date_picker.dart';
 import 'package:personal_expenses_2/Widgets/rich_text.dart';
 import 'package:personal_expenses_2/constants.dart';
 import 'package:personal_expenses_2/Widgets/categories.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
 Map<String, dynamic> categories = {
   'Text': ['Entertainement', 'Social & Lifestyle', 'Beauty & Health', 'Other'],
@@ -21,11 +21,11 @@ class AddTransaction extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransaction> {
-  Color _categoryColor;
-  String _titleValue;
-  String _category;
+  late Color _categoryColor;
+  late String _titleValue;
+  late String _category;
 
-  double _amountValue;
+  double _amountValue = 0.0;
   DateTime _selectedDate = DateTime.now();
 
   @override
@@ -47,7 +47,7 @@ class _AddTransactionState extends State<AddTransaction> {
   }
 
   List<Categories> getWidgetsOfCategories(
-      {double realHeight, double realWidth}) {
+      {required double realHeight, required double realWidth}) {
     List<Categories> newList = [];
     bool lastIndex;
 
@@ -101,7 +101,8 @@ class _AddTransactionState extends State<AddTransaction> {
                 ),
                 autocorrect: false,
                 style: kTextFieldTextStyle.copyWith(
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                  // fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                  fontSize: 20,
                 ),
               ),
               const SizedBox(
@@ -128,7 +129,8 @@ class _AddTransactionState extends State<AddTransaction> {
                 decoration: kTextFieldDecoration,
                 autocorrect: false,
                 style: kTextFieldTextStyle.copyWith(
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                  // fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                  fontSize: 20,
                 ),
               ),
               const SizedBox(
@@ -149,7 +151,8 @@ class _AddTransactionState extends State<AddTransaction> {
     return Text(
       name,
       style: TextStyle(
-        fontSize: ResponsiveFlutter.of(context).fontSize(2),
+        // fontSize: ResponsiveFlutter.of(context).fontSize(2),
+        fontSize:  20,
         fontWeight: FontWeight.w800,
       ),
     );
@@ -192,7 +195,8 @@ class _AddTransactionState extends State<AddTransaction> {
             "Save",
             style: TextStyle(
               color: Colors.white,
-              fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+              // fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+              fontSize: 22,
               fontWeight: FontWeight.w500,
             ),
           ),

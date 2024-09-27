@@ -3,8 +3,8 @@ class Income {
   final double amount;
   final DateTime date;
   Income({
-    this.id,
-    this.amount,
-    this.date,
+    required this.id,
+    required this.amount,
+    required this.date,
   });
 }

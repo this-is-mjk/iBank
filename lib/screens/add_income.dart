@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:personal_expenses_2/Widgets/date_picker.dart';
 import 'package:personal_expenses_2/Widgets/rich_text.dart';
 import 'package:personal_expenses_2/constants.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 
-double _amount;
+double _amount = 0.0;
 
+// ignore: must_be_immutable
 class AddIncome extends StatelessWidget {
   final Function updateIncome;
   final double income;
-  AddIncome({this.income, this.updateIncome});
+  AddIncome({required this.income, required this.updateIncome});
 
-  DateTime _selectedDate = DateTime.now();
+   DateTime _selectedDate = DateTime.now();
 
   void setDate(DateTime newDate) => _selectedDate = newDate;
 
@@ -48,7 +49,8 @@ class AddIncome extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                fontSize: 20,
+                // fontSize: ResponsiveFlutter.of(context).fontSize(2),
               ),
             ),
             const SizedBox(
@@ -80,7 +82,8 @@ class AddIncome extends StatelessWidget {
                     "Save",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                      // fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                      fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
